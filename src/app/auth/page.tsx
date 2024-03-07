@@ -1,7 +1,9 @@
 "use client";
 import Input from "@/Components/Input";
 import Image from "next/image";
+import axios from "axios";
 import { useCallback, useState } from "react";
+import { signIn } from "next-auth/react";
 
 const Auth: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +17,31 @@ const Auth: React.FC = () => {
       currentVariant === "login" ? "register" : "login"
     );
   }, []);
+
+  const register = useCallback(async () => {
+    try {
+      const res = await axios.post("/api/register", {
+        email,
+        password,
+        username,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, username, password]);
+
+  const login = useCallback(async () => {
+    try {
+      signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password]);
 
   return (
     <div className="relative h-full w-full bg-[url('/hero.jpg')] bg-no-repeat">
@@ -63,7 +90,10 @@ const Auth: React.FC = () => {
                   setPassword(ev.target.value);
                 }}
               />
-              <button className="w-full rounded-md py-3 bg-red-600 text-white font-medium mt-10 hover:bg-red-700 transition ">
+              <button
+                onClick={variant === "login" ? login : register}
+                className="w-full rounded-md py-3 bg-red-600 text-white font-medium mt-10 hover:bg-red-700 transition "
+              >
                 {variant === "login" ? " Sign in" : "Sign Up"}
               </button>
 
