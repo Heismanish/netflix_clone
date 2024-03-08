@@ -32,11 +32,11 @@ const Auth: React.FC = () => {
 
   const login = useCallback(async () => {
     try {
-      signIn("credentials", {
+      await signIn("credentials", {
         email,
         password,
         redirect: false,
-        callbackUrl: "http://localhost:3000/",
+        // callbackUrl: "/",
       });
     } catch (error) {
       console.log(error);

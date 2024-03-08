@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import type { AuthOptions } from "next-auth";
 import { compare } from "bcrypt";
+import prismadb from "@/lib/prismadb";
 
 export const authOptions: AuthOptions = {
   providers: [
