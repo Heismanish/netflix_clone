@@ -4,7 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { username, email, password } = await req.json();
+    console.log("aj");
+    const reqBody = await req.json();
+    const { username, email, password } = reqBody;
     console.log(username);
     const existingUser = await prismadb.user.findUnique({
       where: {
