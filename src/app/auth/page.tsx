@@ -4,8 +4,12 @@ import Image from "next/image";
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const Auth: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -18,6 +22,20 @@ const Auth: React.FC = () => {
     );
   }, []);
 
+  const login = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, router]);
+
   const register = useCallback(async () => {
     try {
       const res = await axios.post("/api/register", {
@@ -25,23 +43,11 @@ const Auth: React.FC = () => {
         password,
         username,
       });
+      login();
     } catch (error) {
       console.log(error);
     }
-  }, [email, username, password]);
-
-  const login = useCallback(async () => {
-    try {
-      await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-        // callbackUrl: "/",
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }, [email, password]);
+  }, [email, username, password, login]);
 
   return (
     <div className="relative h-full w-full bg-[url('/hero.jpg')] bg-no-repeat">
@@ -96,6 +102,21 @@ const Auth: React.FC = () => {
               >
                 {variant === "login" ? " Sign in" : "Sign Up"}
               </button>
+
+              <div className="flex flex-row justify-center gap-4 mt-8 items-center">
+                <div
+                  onClick={() => signIn("google", { callbackUrl: "/" })}
+                  className="w-10 h-10 bg-white rounded-full flex justify-center items-center cursor-pointer hover:opacity-70 transition "
+                >
+                  <FcGoogle size={30}></FcGoogle>
+                </div>
+                <div
+                  onClick={() => signIn("github", { callbackUrl: "/" })}
+                  className="w-10 h-10 bg-white flex justify-center items-center rounded-full cursor-pointer hover:opacity-70 transition"
+                >
+                  <FaGithub size={30}></FaGithub>
+                </div>
+              </div>
 
               <p className="text-neutral-500 mt-12">
                 {variant === "login"
