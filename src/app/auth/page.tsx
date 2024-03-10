@@ -9,7 +9,7 @@ import { FaGithub } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 const Auth: React.FC = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -28,13 +28,13 @@ const Auth: React.FC = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
-      router.push("/");
+      // router.push("/");
     } catch (error) {
       console.log(error);
     }
-  }, [email, password, router]);
+  }, [email, password]);
 
   const register = useCallback(async () => {
     try {
@@ -105,13 +105,13 @@ const Auth: React.FC = () => {
 
               <div className="flex flex-row justify-center gap-4 mt-8 items-center">
                 <div
-                  onClick={() => signIn("google", { callbackUrl: "/" })}
+                  onClick={() => signIn("google", { callbackUrl: "/profiles" })}
                   className="w-10 h-10 bg-white rounded-full flex justify-center items-center cursor-pointer hover:opacity-70 transition "
                 >
                   <FcGoogle size={30}></FcGoogle>
                 </div>
                 <div
-                  onClick={() => signIn("github", { callbackUrl: "/" })}
+                  onClick={() => signIn("github", { callbackUrl: "/profiles" })}
                   className="w-10 h-10 bg-white flex justify-center items-center rounded-full cursor-pointer hover:opacity-70 transition"
                 >
                   <FaGithub size={30}></FaGithub>
