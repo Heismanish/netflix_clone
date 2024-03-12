@@ -50,11 +50,11 @@ const Auth: React.FC = () => {
   }, [email, username, password, login]);
 
   return (
-    <div className="relative h-full w-full bg-[url('/hero.jpg')] bg-no-repeat">
+    <div className="relative h-full w-full bg-[url('/Images/hero.jpg')] bg-no-repeat">
       <div className="bg-black  w-full h-full lg:bg-opacity-50">
         <nav className="px-12 py-5">
           <Image
-            src="/logo.png"
+            src="/Images/logo.png"
             width={160}
             height={120}
             className="h-12"

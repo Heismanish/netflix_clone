@@ -1,4 +1,5 @@
 import Logout from "@/Components/Logout";
+import Navbar from "@/Components/Navbar";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -11,9 +12,10 @@ export default async function Home() {
   }
   return (
     <div>
-      <h1 className="text-white">{JSON.stringify(session?.user?.name)}</h1>
+      <Navbar />
+      {/* <h1 className="text-white">{JSON.stringify(session?.user?.name)}</h1>
       <h1 className="text-white text-3xl">Netflix clone</h1>
-      <Logout></Logout>
+      <Logout /> */}
     </div>
   );
 }

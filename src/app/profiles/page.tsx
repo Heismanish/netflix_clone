@@ -17,7 +17,7 @@ const Profiles = async () => {
           Who is watching?
         </h1>
         <div className="flex justify-center items-center gap-8 mt-10">
-          <WatchersList userName={session.user?.name}></WatchersList>
+          <WatchersList userName={session.user?.name || ""}></WatchersList>
         </div>
       </div>
     </div>

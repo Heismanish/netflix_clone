@@ -1,11 +1,18 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const WatchersList = ({ userName }: { userName: string }) => {
+  const router = useRouter();
   return (
-    <div onClick={() => {}}>
-      <div className="group w-44 mx-auto flex-row  ">
+    <div>
+      <div
+        className="group w-44 mx-auto flex-row  "
+        onClick={() => {
+          router.push("/");
+        }}
+      >
         {/* Profile Image */}
         <div className="w-44 h-44 rounded-md flex justify-center items-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden transition">
           <Image
