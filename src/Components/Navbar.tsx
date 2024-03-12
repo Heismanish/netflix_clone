@@ -1,21 +1,45 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import NavbarItem from "./NavbarItem";
 import Browse from "./Browse";
 import { BsBell, BsSearch } from "react-icons/bs";
 import Accounts from "./Accounts";
 
+const TOP_OFFSET = 66;
+
 // TODO: Make this navbar change bg after it has scrolled in y direction.
 const Navbar = () => {
+  const [showBackground, setShowBackground] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log(window.scrollY);
+      if (window.scrollY >= TOP_OFFSET) {
+        setShowBackground(true);
+      } else {
+        setShowBackground(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="w-full fixed z-40">
-      <div className="flex flex-row items-center px-4 md:px-16 py-6 transition duration-500 bg-zinc-900 bg-opacity-90">
+    <nav className="w-full bg-transparent fixed z-40">
+      <div
+        className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${
+          showBackground ? "bg-zinc-900 bg-opacity-90" : ""
+        }`}
+      >
         <Image
-          width={64}
-          height={16}
+          width={84}
+          height={32}
           src="/Images/logo.png"
           alt="Netflix Logo"
-          className="h-4 lg:h-7"
         />
         <div className=" flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" />
@@ -44,7 +68,7 @@ const Navbar = () => {
           <Accounts />
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

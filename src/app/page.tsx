@@ -1,4 +1,4 @@
-import Logout from "@/Components/Logout";
+import Billboard from "@/Components/Billboard";
 import Navbar from "@/Components/Navbar";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
@@ -13,9 +13,7 @@ export default async function Home() {
   return (
     <div>
       <Navbar />
-      {/* <h1 className="text-white">{JSON.stringify(session?.user?.name)}</h1>
-      <h1 className="text-white text-3xl">Netflix clone</h1>
-      <Logout /> */}
+      <Billboard />
     </div>
   );
 }
