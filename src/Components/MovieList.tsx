@@ -19,12 +19,10 @@ export const MovieList: React.FC<MovieListprops> = ({ title }) => {
   return (
     <div className="mt-4 space-y-8 px-4 md:px-12">
       <div className="text-md mb-4 font-semibold text-white md:text-xl">
-        <p>{title}</p>
+        <p className="mb-2"> {title}</p>
         <div className="grid grid-cols-4 gap-2">
           {movies?.map((movie: MovieInterface) => (
-            <div key={movie.id} className="">
-              <MovieCard data={movie}></MovieCard>
-            </div>
+            <MovieCard key={movie.id} data={movie}></MovieCard>
           ))}
         </div>
       </div>
