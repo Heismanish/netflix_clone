@@ -1,8 +1,8 @@
 import fetcher from "@/lib/fetcher";
-import useSWR from "swr";
+import useSwr from "swr";
 
 export function useBillboard() {
-  const { data, error, isLoading } = useSWR("/api/random", fetcher);
+  const { data, error, isLoading } = useSwr("/api/random", fetcher);
   console.log(data);
 
   // render data

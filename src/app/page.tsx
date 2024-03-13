@@ -1,4 +1,6 @@
 import Billboard from "@/Components/Billboard";
+import { MovieList } from "@/Components/MovieList";
+import { MyList } from "@/Components/MyList";
 import Navbar from "@/Components/Navbar";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
@@ -14,6 +16,10 @@ export default async function Home() {
     <div>
       <Navbar />
       <Billboard />
+      <div className="pb-40">
+        <MovieList title="Trending Now" />
+        <MyList title="My List" />
+      </div>
     </div>
   );
 }
