@@ -1,4 +1,5 @@
 import Billboard from "@/Components/Billboard";
+import InfoModalParent from "@/Components/InfoModalParent";
 import { MovieList } from "@/Components/MovieList";
 import { MyList } from "@/Components/MyList";
 import Navbar from "@/Components/Navbar";
@@ -14,6 +15,7 @@ export default async function Home() {
   }
   return (
     <div>
+      <InfoModalParent />
       <Navbar />
       <Billboard />
       <div className="pb-40">

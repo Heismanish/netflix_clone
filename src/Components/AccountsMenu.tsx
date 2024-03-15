@@ -1,12 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import Logout from "./Logout";
+import useCurrentUser from "@/app/hooks/useCurrentUser";
 
 interface AccountsMenuInterface {
   visible?: boolean;
 }
 
 const AccountsMenu: React.FC<AccountsMenuInterface> = ({ visible }) => {
+  const { data } = useCurrentUser();
   if (!visible) {
     return null;
   }
@@ -22,7 +24,7 @@ const AccountsMenu: React.FC<AccountsMenuInterface> = ({ visible }) => {
             className="w-8 h-8 rounded-md"
           />
           <p className="text-white text-sm group-hover/item:underline transition">
-            UserName
+            {data?.currentUser?.name}
           </p>
         </div>
         <hr className="border-0 bg-gray-600 h-px my-4" />
