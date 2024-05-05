@@ -144,5 +144,6 @@ const Auth: React.FC = () => {
     </div>
   );
 };
+export const dynamic = "force-dynamic";
 
 export default Auth;

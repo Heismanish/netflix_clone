@@ -26,3 +26,4 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json({ error }, { status: 401 });
   }
 };
+export const dynamic = "force-dynamic";

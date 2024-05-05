@@ -12,3 +12,4 @@ export async function GET() {
     return NextResponse.json({ error }, { status: 405 });
   }
 }
+export const dynamic = "force-dynamic";
