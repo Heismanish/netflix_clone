@@ -2,13 +2,14 @@
 import Input from "@/Components/Input";
 import Image from "next/image";
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 const Auth: React.FC = () => {
+  const [client, setClient] = useState<boolean>(false);
   // const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,6 +50,12 @@ const Auth: React.FC = () => {
     }
   }, [email, username, password, login]);
 
+  useEffect(() => {
+    setClient(true);
+  }, []);
+  if (!client) {
+    return null;
+  }
   return (
     <div className="relative h-full w-full bg-[url('/Images/hero.jpg')] bg-no-repeat">
       <div className="bg-black  w-full h-full lg:bg-opacity-50">

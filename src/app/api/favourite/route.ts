@@ -116,7 +116,6 @@ export const POST = async (req: NextRequest) => {
 
 export const DELETE = async (req: NextRequest) => {
   try {
-    console.log("HITTT");
     const { currentUser } = await serverAuth();
     const { movieId } = await req.json();
     console.log(movieId);
